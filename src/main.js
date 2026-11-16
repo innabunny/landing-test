@@ -20,6 +20,24 @@ import intro from './components/Intro/Intro.html?raw';
 import mobileMenu from './components/MobileMenu/MobileMenu.html?raw';
 
 const app = document.querySelector('#app');
+const menu = document.querySelector('#mobile-menu');
+const openButton = document.querySelector('.header__menu-button');
+const closeButton = document.querySelector('.mobile-menu__close');
+const desktopMedia = window.matchMedia('(min-width: 768px)');
+
+function fixAssetPaths() {
+  const base = import.meta.env.BASE_URL;
+
+  document.querySelectorAll('img[src^="/"]').forEach((img) => {
+    const path = img.getAttribute('src').slice(1);
+    img.src = `${base}${path}`;
+  });
+
+  document.querySelectorAll('source[srcset^="/"]').forEach((source) => {
+    const path = source.getAttribute('srcset').slice(1);
+    source.srcset = `${base}${path}`;
+  });
+}
 
 app.innerHTML = `
   <div class="page-top">
@@ -35,9 +53,7 @@ app.innerHTML = `
   ${mobileMenu}
 `;
 
-const menu = document.querySelector('#mobile-menu');
-const openButton = document.querySelector('.header__menu-button');
-const closeButton = document.querySelector('.mobile-menu__close');
+fixAssetPaths();
 
 function openMenu() {
   menu.hidden = false;
@@ -68,8 +84,6 @@ document.addEventListener('keydown', (event) => {
     closeMenu();
   }
 });
-
-const desktopMedia = window.matchMedia('(min-width: 768px)');
 
 desktopMedia.addEventListener('change', (event) => {
   if (event.matches && !menu.hidden) {
