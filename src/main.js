@@ -20,10 +20,6 @@ import intro from './components/Intro/Intro.html?raw';
 import mobileMenu from './components/MobileMenu/MobileMenu.html?raw';
 
 const app = document.querySelector('#app');
-const menu = document.querySelector('#mobile-menu');
-const openButton = document.querySelector('.header__menu-button');
-const closeButton = document.querySelector('.mobile-menu__close');
-const desktopMedia = window.matchMedia('(min-width: 768px)');
 
 function fixAssetPaths() {
   const base = import.meta.env.BASE_URL;
@@ -42,18 +38,29 @@ function fixAssetPaths() {
 app.innerHTML = `
   <div class="page-top">
     ${header}
-    ${hero}
   </div>
 
-  ${intro}
-  ${votingSystem}
-  ${votingSteps}
-  ${moscowVoting}
+  <main id="main-content">
+    <div class="page-top">
+      ${hero}
+    </div>
+
+    ${intro}
+    ${votingSystem}
+    ${votingSteps}
+    ${moscowVoting}
+  </main>
+
   ${footer}
   ${mobileMenu}
 `;
 
 fixAssetPaths();
+
+const menu = document.querySelector('#mobile-menu');
+const openButton = document.querySelector('.header__menu-button');
+const closeButton = document.querySelector('.mobile-menu__close');
+const desktopMedia = window.matchMedia('(min-width: 768px)');
 
 function openMenu() {
   menu.hidden = false;
