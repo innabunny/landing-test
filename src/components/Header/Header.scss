@@ -1,0 +1,174 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.header {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: v.$container-wide;
+  margin-inline: auto;
+  padding: 40px 80px;
+
+  color: v.$color-background;
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 140px;
+    text-decoration: none;
+  }
+
+  &__logo-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__navigation {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  // Стрелка и подпись «РАЗДЕЛЫ»
+  &__hint {
+    position: relative;
+    width: 44px;
+    flex-shrink: 0;
+    color: v.$color-background;
+  }
+
+  &__arrow {
+    display: block;
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  &__label {
+    position: absolute;
+    top: 34px;
+    left: 0;
+
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  // Кружки навигации
+  &__nav {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 56px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      right: 15px;
+
+      height: 1px;
+      background-color: v.$color-background;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__nav-link {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid v.$color-background;
+    border-radius: 50%;
+
+    background-color: v.$color-primary;
+    color: v.$color-background;
+
+    font-family: v.$font-mono;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      transform 200ms ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: scale(1.12);
+      }
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: v.$color-background;
+      color: v.$color-primary;
+    }
+
+    &--active {
+      background-color: v.$color-background;
+      color: v.$color-primary;
+    }
+  }
+
+  // Кнопка мобильного меню
+  &__menu-button {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    padding: 10px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: v.$color-background;
+    }
+  }
+
+  // Планшеты: 768–1199px
+  @include m.mobile {
+    padding: 32px 40px;
+  }
+
+  // Мобильные устройства: до 767px
+  @include m.mobile {
+    padding: 20px;
+
+    &__navigation {
+      display: none;
+    }
+
+    &__menu-button {
+      display: flex;
+    }
+
+    &__logo {
+      width: 70px;
+    }
+  }
+}

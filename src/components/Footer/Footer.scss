@@ -1,0 +1,72 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.footer {
+  background: v.$color-dark;
+
+  &__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    width: 100%;
+    max-width: v.$container-wide;
+    min-height: 150px;
+    margin: 0 auto;
+    padding: 48px 80px;
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+  }
+
+  &__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: 2px solid v.$color-background;
+      outline-offset: 6px;
+    }
+  }
+
+  &__social-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    transition:
+      transform 200ms ease,
+      opacity 200ms ease;
+  }
+
+  // Эффект наведения только для устройств с мышью
+  @media (hover: hover) and (pointer: fine) {
+    &__social-link:hover &__social-icon {
+      transform: translateY(-3px);
+      opacity: 0.75;
+    }
+  }
+
+  // Мобильные устройства: до 767px
+  @include m.mobile {
+    &__container {
+      justify-content: flex-start;
+      min-height: 158px;
+      padding: 44px 27px;
+    }
+
+    &__socials {
+      gap: 70px;
+    }
+  }
+}

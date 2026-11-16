@@ -1,0 +1,47 @@
+@use './fonts';
+@use './variables';
+@use './global';
+@use './tooltip';
+
+@media (hover: hover) and (pointer: fine) {
+  .intro__button,
+  .voting-steps__button {
+    transition:
+      background-color 250ms ease,
+      box-shadow 250ms ease;
+
+    &:hover {
+      background-color: #f35e4a;
+      box-shadow: 0 6px 18px rgb(45 55 80 / 12%);
+    }
+
+    &:hover::after {
+      transform: translate(-3px, -3px);
+    }
+  }
+}
+
+.intro__button,
+.voting-steps__button {
+  &::after {
+    transition: transform 250ms ease;
+  }
+
+  &:active {
+    background-color: #e9503c;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #376eff;
+    outline-offset: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro__button,
+  .voting-steps__button,
+  .header__nav-link,
+  .footer__social-icon {
+    transition: none;
+  }
+}

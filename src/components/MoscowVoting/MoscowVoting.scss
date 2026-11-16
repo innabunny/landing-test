@@ -1,0 +1,176 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.moscow-voting {
+  position: relative;
+  overflow: hidden;
+  background: v.$color-accent;
+  color: v.$color-background;
+
+  &__container {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: start;
+    column-gap: 40px;
+
+    width: 100%;
+    max-width: v.$container-wide;
+    min-height: 900px;
+    margin: 0 auto;
+    padding: 50px 60px;
+  }
+
+  &__visual {
+    position: relative;
+    min-width: 0;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    margin-top: 50px;
+  }
+
+  &__illustration {
+    display: block;
+    width: 110%;
+    max-width: none;
+    height: auto;
+  }
+
+  &__content {
+    min-width: 0;
+    padding-top: 95px;
+  }
+
+  &__title {
+    max-width: 550px;
+    margin: 0 0 24px;
+
+    font-family: v.$font-main;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    max-width: 550px;
+    margin: 0;
+
+    font-family: v.$font-main;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.534;
+  }
+
+  &__decoration {
+    position: absolute;
+    z-index: 1;
+
+    right: clamp(20px, 5.55vw, 80px);
+    bottom: clamp(10px, 2.55vw, 80px);
+
+    display: block;
+    width: clamp(200px, 23vw, 330px);
+    height: auto;
+    margin: 0;
+
+    pointer-events: none;
+  }
+
+  // Планшеты: 768–1199px
+  @include m.tablet {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      min-height: 0;
+      padding: 60px 48px 80px;
+    }
+
+    &__visual {
+      width: 100%;
+      justify-content: center;
+    }
+
+    &__illustration {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    &__content {
+      width: 100%;
+      max-width: 650px;
+      padding-top: 48px;
+    }
+
+    &__title {
+      max-width: 100%;
+      font-size: clamp(32px, 4vw, 42px);
+    }
+
+    &__description {
+      max-width: 100%;
+      font-size: clamp(20px, 2.5vw, 24px);
+      line-height: 1.5;
+    }
+
+    &__decoration {
+      display: none;
+    }
+  }
+
+  // Мобильная версия: до 767px
+  @include m.mobile {
+    &__container {
+      display: flex;
+      flex-direction: column;
+
+      min-height: 0;
+      padding: 0 24px 64px;
+    }
+
+    // Иллюстрация первая
+    &__visual {
+      width: 100%;
+      min-height: 0;
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    &__illustration {
+      width: calc(100% + 28px);
+      max-width: none;
+      flex-shrink: 0;
+    }
+
+    // Текст после иллюстрации
+    &__content {
+      width: 100%;
+      padding-top: 16px;
+    }
+
+    &__title {
+      max-width: 100%;
+      margin-bottom: 18px;
+
+      font-size: 32px;
+      line-height: 1.05;
+    }
+
+    &__description {
+      max-width: 100%;
+      font-size: 21px;
+      line-height: 1.6;
+    }
+
+    &__decoration {
+      display: none;
+    }
+  }
+}

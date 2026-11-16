@@ -1,0 +1,92 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: v.$color-background;
+
+  &__container {
+    position: relative;
+    width: 100%;
+    max-width: v.$container-wide;
+    min-height: clamp(560px, 48.6vw, 700px);
+    margin: 0 auto;
+    padding: 120px 80px;
+  }
+
+  &__title {
+    position: relative;
+    z-index: 2;
+    max-width: min(650px, 52%);
+    margin: 0;
+
+    font-family: v.$font-main;
+    font-size: clamp(36px, 4vw, 64px);
+    font-weight: 700;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  &__graphics {
+    position: absolute;
+    inset: 60px 40px;
+    pointer-events: none;
+  }
+
+  &__picture {
+    position: absolute;
+    right: clamp(-60px, -4.17vw, -30px);
+    top: clamp(-120px, -8.33vw, -60px);
+
+    display: block;
+    width: clamp(55%, 65vw, 70%);
+  }
+
+  &__image {
+    display: block;
+    height: auto;
+
+    &--main {
+      width: 100%;
+    }
+
+    &--left {
+      position: absolute;
+      left: clamp(-50px, -2vw, -10px);
+      bottom: 1vw;
+      width: 30%;
+    }
+  }
+
+  @include m.hero-stack {
+    &__container {
+      min-height: auto;
+      padding: 120px 40px 0;
+    }
+
+    &__title {
+      max-width: 100%;
+      font-size: clamp(36px, 10vw, 42px);
+      line-height: 1.1;
+    }
+
+    &__graphics {
+      position: relative;
+      inset: auto;
+      margin: 32px -20px 0;
+    }
+
+    &__picture {
+      position: relative;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      width: 100%;
+    }
+
+    &__image--left {
+      display: none;
+    }
+  }
+}

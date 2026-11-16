@@ -1,0 +1,88 @@
+// По умолчанию элементы видимы. Дефолт
+[data-animate] {
+  opacity: 1;
+  transform: none;
+}
+
+// АНИМАЦИИ ВКЛЮЧЕНЫ
+@media (prefers-reduced-motion: no-preference) {
+
+  // Общие настройки всех анимаций
+  .animations-ready [data-animate] {
+    --animate-duration: 650ms;
+    --animate-delay: 0ms;
+    --animate-distance: 24px;
+
+    transition:
+      opacity var(--animate-duration) ease,
+      transform var(--animate-duration) ease;
+
+    transition-delay: var(--animate-delay);
+  }
+
+  // FADE UP
+
+  // Старый вариант без значения data-animate
+  // тоже будет использовать fade-up.
+  .animations-ready [data-animate=''],
+  .animations-ready [data-animate='fade-up'] {
+    --animate-from: translateY(var(--animate-distance));
+  }
+
+  // FADE LEFT
+  .animations-ready [data-animate='fade-left'] {
+    --animate-from: translateX(calc(-1 * var(--animate-distance)));
+  }
+
+  // FADE RIGHT
+  .animations-ready [data-animate='fade-right'] {
+    --animate-from: translateX(var(--animate-distance));
+  }
+
+  // ZOOM IN
+  .animations-ready [data-animate='zoom-in'] {
+    --animate-from: scale(0.94);
+  }
+
+  // НАЧАЛЬНОЕ СОСТОЯНИЕ
+  .animations-ready [data-animate]:not(.is-visible) {
+    opacity: 0;
+    transform: var(--animate-from, translateY(24px));
+  }
+
+  // КОНЕЧНОЕ СОСТОЯНИЕ
+  .animations-ready [data-animate].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  // ЗАДЕРЖКИ
+  .animations-ready [data-delay='100'] {
+    --animate-delay: 100ms;
+  }
+
+  .animations-ready [data-delay='150'] {
+    --animate-delay: 150ms;
+  }
+
+  .animations-ready [data-delay='200'] {
+    --animate-delay: 200ms;
+  }
+
+  .animations-ready [data-delay='300'] {
+    --animate-delay: 300ms;
+  }
+
+  .animations-ready [data-delay='400'] {
+    --animate-delay: 400ms;
+  }
+}
+
+// УМЕНЬШЕННОЕ ДВИЖЕНИЕ
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
